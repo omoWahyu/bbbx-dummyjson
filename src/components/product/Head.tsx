@@ -4,10 +4,9 @@ import { usdToIdr } from '../../utils/usdToIdr';
 
 interface ProductProps {
     data: iProduct;
-    addToWishlist: (product: iProduct) => void;
 }
 
-const ProductHead: React.FC<ProductProps> = ({ data, addToWishlist }) => {
+const ProductHead: React.FC<ProductProps> = ({ data }) => {
     return (
         <div className="sticky top-16 z-10 w-full bg-white border-b">
             <div className="max-w-screen-xl mx-auto flex justify-between items-end py-4">

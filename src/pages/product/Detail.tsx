@@ -42,7 +42,7 @@ const ProductDetail: React.FC = () => {
 
     return (
         <div>
-            <DetailLayout data={product} addToWishlist={addToWishlist}>
+            <DetailLayout data={product}>
 
                 <div className='grid lg:grid-cols-3 gap-3 mb-12'>
 

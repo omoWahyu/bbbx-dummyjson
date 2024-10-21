@@ -6,12 +6,12 @@ import ProductHead from '../components/product/Head';
 
 import { iProduct } from '../utils/types';
 
-export default function DetailLayout({ children, data, addToWishlist }: { children: React.ReactNode; data: iProduct; addToWishlist: (product: iProduct) => void }) {
+export default function DetailLayout({ children, data }: { children: React.ReactNode; data: iProduct }) {
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
     return (
         <div>
             <Header />
-            {!isMobile && <ProductHead data={data} addToWishlist={addToWishlist} />}
+            {!isMobile && <ProductHead data={data} />}
             <main className='max-w-screen-lg mx-auto px-4 pt-14 mb-20'>
                 {children}
             </main>
