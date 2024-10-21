@@ -40,6 +40,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                     loading='lazy'
                     src={isVisible ? mainImage : ''}
                     alt={product?.title}
+                    sizes="(max-width: 1024px) 50vw"
                     className="w-auto h-full p-5"
                 />
             </div>

@@ -3,11 +3,7 @@ import { useProducts } from "../hooks/useProducts";
 import StoreLayout from "../layouts/StoreLayout";
 
 const Home = () => {
-    const { data: products, error, isLoading } = useProducts();
-
-    if (isLoading) return <div>Loading...</div>
-    if (error) return <div>Error</div>
-    console.log(products)
+    const { data: products } = useProducts();
     return (
         <StoreLayout>
             <div className='max-w-screen-lg mx-auto'>

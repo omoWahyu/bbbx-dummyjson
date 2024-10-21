@@ -1,11 +1,14 @@
+import Footer from '../components/ui/Footer';
+import { Header } from '../components/ui/Header';
+
 export default function StoreLayout({ children }: { children: React.ReactNode }) {
     return (
         <div>
-            <header className="w-full">Header</header>
-            <main className='mx-4'>
+            <Header />
+            <main className='mx-4 min-h-screen'>
                 {children}
             </main>
-            <footer className="w-full">Footer</footer>
+            <Footer />
         </div>
     );
 }

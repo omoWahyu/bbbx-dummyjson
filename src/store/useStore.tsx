@@ -2,20 +2,23 @@
 import { create } from 'zustand';
 import { iProduct } from '../utils/types';
 
-interface StoreState {
+type Store = {
     wishlist: iProduct[];
     addToWishlist: (product: iProduct) => void;
-    removeFromWishlist: (id: number) => void;
-}
+    removeFromWishlist: (productId: number) => void;
+    isProductInWishlist: (productId: number) => boolean;
+};
 
-const useStore = create<StoreState>((set) => ({
+const useStore = create<Store>((set, get) => ({
     wishlist: [],
-    addToWishlist: (product) => set((state) => ({
+    addToWishlist: (product: iProduct) => set((state) => ({
         wishlist: [...state.wishlist, product],
     })),
-    removeFromWishlist: (id) => set((state) => ({
-        wishlist: state.wishlist.filter(product => product.id !== id),
+    removeFromWishlist: (productId: number) => set((state) => ({
+        wishlist: state.wishlist.filter(item => item.id !== productId),
     })),
+    isProductInWishlist: (productId: number) => get().wishlist.some(item => item.id === productId),
 }));
 
 export default useStore;
+
