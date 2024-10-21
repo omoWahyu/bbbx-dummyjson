@@ -63,7 +63,8 @@ const ProductDetail: React.FC = () => {
                             {product.images?.map((img) => (
                                 <div
                                     key={img}
-                                    className='border p-2 rounded-md cursor-pointer hover:border-slate-400 transition-all ease-in-out duration-300'
+                                    className='border p-2 rounded-md cursor-pointer hover:border-slate-400 
+                                    bg-white/20 aspect-square backdrop-blur transition-all ease-in-out duration-300'
                                     onClick={() => changeMainImage(img)}
                                 >
                                     <img
