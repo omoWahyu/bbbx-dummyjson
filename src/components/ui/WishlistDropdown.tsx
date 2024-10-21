@@ -5,35 +5,21 @@ import useStore from '../../store/useStore';
 import { iProduct } from '../../utils/types';
 
 const WishlistDropdown = () => {
-
-    const [isDropdownOpen, setDropdownOpen] = useState(false);
-    const dropdownRef = useRef<HTMLDivElement | null>(null);
     const wishlist = useStore((state) => state.wishlist);
     const wishlistCount = useStore((state) => state.wishlistCount());
-
+    const [isOpen, setIsOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
 
     const toggleDropdown = () => {
-        setDropdownOpen((prev) => !prev);
+        setIsOpen((prev) => !prev);
     };
-
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-                setDropdownOpen(false);
-            }
-        };
-
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [dropdownRef]);
 
     return (
         <>
             <button
                 className="group relative"
-                onClick={toggleDropdown}
+                // onClick={toggleDropdown}
+                onMouseDown={() => setIsOpen((prev) => !prev)}
             >
                 {wishlistCount > 0 && (
                     <span className="absolute z-10 -top-1 -right-1 rounded-full bg-rose-500 text-white text-xs text-center w-4 h-4 group-hover:scale-125 cursor-default transition-all ease-in-out duration-300">
@@ -45,7 +31,7 @@ const WishlistDropdown = () => {
                 <span></span>
             </button>
 
-            {isDropdownOpen && (
+            {isOpen && (
                 <div ref={dropdownRef} className="absolute top-10 right-2 mt-2 w-64 bg-white text-black rounded-md shadow-lg z-20">
                     <div className="p-2 border-b font-semibold">Wishlist</div>
                     <div className="max-h-56 overflow-y-auto">
@@ -69,3 +55,4 @@ const WishlistDropdown = () => {
 }
 
 export default WishlistDropdown;
+

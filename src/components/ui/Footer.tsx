@@ -1,8 +1,6 @@
-import { useMediaQuery } from 'react-responsive';
 import { Github, Linkedin, Whatsapp } from "@styled-icons/bootstrap";
 
 const Footer = () => {
-    const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
     return (
         <>
@@ -48,8 +46,6 @@ const Footer = () => {
                     </div>
                 </div>
             </footer>
-            {isMobile && (
-                <div className="h-20"></div>)}
         </>
     );
 }

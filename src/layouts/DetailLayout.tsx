@@ -7,6 +7,7 @@ import ProductHead from '../components/product/Head';
 import { iProduct } from '../utils/types';
 
 export default function DetailLayout({ children, data }: { children: React.ReactNode; data: iProduct }) {
+
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
     return (
         <div>
@@ -26,6 +27,9 @@ export default function DetailLayout({ children, data }: { children: React.React
                 </div>
             )}
             <Footer />
+            {isMobile && (
+                <div className="h-20"></div>
+            )}
         </div>
     );
 }

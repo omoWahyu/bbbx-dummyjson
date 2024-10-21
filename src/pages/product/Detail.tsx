@@ -1,5 +1,5 @@
 // src/components/ProductDetail.tsx
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 
@@ -20,6 +20,10 @@ const ProductDetail: React.FC = () => {
     const { data: product } = useProduct(id!); // Fetch product data using custom hook
 
     const [mainImage, setMainImage] = useState('');
+    // reset state when route change
+    useEffect(() => {
+        setMainImage('');
+    }, [id]);
 
     if (!product) {
         return <div></div>;
@@ -63,14 +67,14 @@ const ProductDetail: React.FC = () => {
                             {product.images?.map((img) => (
                                 <div
                                     key={img}
-                                    className='border p-2 rounded-md cursor-pointer hover:border-slate-400 
+                                    className='flex justify-center border p-2 w-14 rounded-md cursor-pointer hover:border-slate-400 
                                     bg-white/20 aspect-square backdrop-blur transition-all ease-in-out duration-300'
                                     onClick={() => changeMainImage(img)}
                                 >
                                     <img
                                         src={img}
                                         alt={product?.title}
-                                        className='h-10'
+                                        className='w-auto h-full'
                                     />
                                 </div>
                             ))}
