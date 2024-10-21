@@ -1,7 +1,7 @@
 import { useMediaQuery } from 'react-responsive';
 
 import Footer from '../components/ui/Footer';
-import { HeaderDetail as Header } from '../components/ui/Header';
+import { Header } from '../components/ui/Header';
 import ProductHead from '../components/product/Head';
 
 import { iProduct } from '../utils/types';
