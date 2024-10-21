@@ -13,6 +13,8 @@ this stack is use:
 | Vite | 5.4.8 |
 | Bun | 1.0.1 |
 | Zustand | 5.0.0 |
+| Tanstack Query | 5.59.15 |
+| React Query Devtools | 5.59.15 |
 | TailwindCSS | 3.4.14 |
 
 
