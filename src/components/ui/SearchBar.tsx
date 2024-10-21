@@ -38,7 +38,7 @@ const FilterSearchBar: React.FC<FilterSearchBarProps> = ({ data: products, onFil
         <div className="flex items-center justify-between mb-4">
             <input
                 type="text"
-                placeholder="Cari Apapun dissini..."
+                placeholder="Cari Apapun disini..."
                 value={searchTerm}
                 onChange={handleSearchChange}
                 className="border p-2 h-12 rounded-md w-full mr-4"
