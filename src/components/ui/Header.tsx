@@ -4,7 +4,7 @@ import WishlistDropdown from './WishlistDropdown';
 
 export const Header = () => {
     return (
-        <header className='sticky top-0 z-20 w-full bg-slate-100'>
+        <header className='sticky top-0 z-20 w-full bg-slate-100/40 md:bg-slate-100 backdrop-blur'>
             <div className="relative max-w-screen-xl mx-auto h-16 px-4">
                 <div className="h-full flex items-center justify-between">
                     <Link to="/" className="">
