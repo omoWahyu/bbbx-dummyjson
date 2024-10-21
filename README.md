@@ -1,8 +1,22 @@
 # Introductions
-this stack is use:
-React, TypeScript, Vite and Bun
 
-## Installation
+**Its Responsive**
+so don't forget to try it on mobile and laptop devices
+
+this stack is use:
+--------
+
+| Tech Stack | Version |
+| --- | --- |
+| React | 18.3.1 |
+| TypeScript | 5.5.3 |
+| Vite | 5.4.8 |
+| Bun | 1.0.1 |
+| Zustand | 5.0.0 |
+| TailwindCSS | 3.4.14 |
+
+
+# How To Use
 
 1. Install Bun
 ``` bash
