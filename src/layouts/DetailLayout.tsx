@@ -9,7 +9,7 @@ export default function DetailLayout({ children, data, addToWishlist }: { childr
         <div>
             <Header />
             <ProductHead data={data} addToWishlist={addToWishlist} />
-            <main className='min-h-screen max-w-screen-lg mx-auto px-4'>
+            <main className='max-w-screen-lg mx-auto px-4 pt-14 mb-20'>
                 {children}
             </main>
             <Footer />

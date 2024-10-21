@@ -7,6 +7,7 @@ type Store = {
     addToWishlist: (product: iProduct) => void;
     removeFromWishlist: (productId: number) => void;
     isProductInWishlist: (productId: number) => boolean;
+    wishlistCount: () => number;
 };
 
 const useStore = create<Store>((set, get) => ({
@@ -18,6 +19,7 @@ const useStore = create<Store>((set, get) => ({
         wishlist: state.wishlist.filter(item => item.id !== productId),
     })),
     isProductInWishlist: (productId: number) => get().wishlist.some(item => item.id === productId),
+    wishlistCount: () => get().wishlist.length,
 }));
 
 export default useStore;
