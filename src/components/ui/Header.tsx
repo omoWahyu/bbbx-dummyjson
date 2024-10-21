@@ -65,7 +65,7 @@ export const Header = () => {
                                         </Link>
                                     ))
                                 ) : (
-                                    <div className="p-2 text-gray-600">Wishlist is empty</div>
+                                    <div className="p-2 text-gray-600">Belum ada Wishlist</div>
                                 )}
                             </div>
                         </div>
