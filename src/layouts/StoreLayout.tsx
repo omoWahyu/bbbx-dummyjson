@@ -1,9 +1,11 @@
 export default function StoreLayout({ children }: { children: React.ReactNode }) {
     return (
-        <main>
+        <div>
             <header className="w-full">Header</header>
-            {children}
+            <main className='mx-4'>
+                {children}
+            </main>
             <footer className="w-full">Footer</footer>
-        </main>
+        </div>
     );
 }

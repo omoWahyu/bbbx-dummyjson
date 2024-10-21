@@ -1,11 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
-import { getProducts } from "../utils/api";
+import { getProduct, getProducts } from "../utils/api";
+import { iProduct } from "../utils/types";
 
-const useProducts = () => {
-	return useQuery({
+export const useProducts = () => {
+	return useQuery<iProduct[], Error>({
 		queryKey: ["products"],
-		queryFn: getProducts,
+		queryFn: () => getProducts(),
+		staleTime: 1000 * 60 * 15,
 	});
 };
 
-export default useProducts;
+export const useProduct = (id: string) => {
+	return useQuery<iProduct, Error>({
+		queryKey: ["product", id],
+		queryFn: () => getProduct(id),
+		staleTime: 1000 * 60 * 15,
+	});
+};
