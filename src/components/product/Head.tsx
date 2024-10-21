@@ -39,7 +39,6 @@ const ProductHead: React.FC<ProductProps> = ({ data, addToWishlist }) => {
                 </div>
                 <div className=''>
                     <button
-                        onClick={() => addToWishlist(data)}
                         disabled
                         className="disabled:bg-slate-300 disabled:text-slate-50 bg-blue-500 text-white px-6 py-2 mt-2 rounded"
                     >

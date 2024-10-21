@@ -1,17 +1,20 @@
 // src/components/ProductDetail.tsx
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
+
+import { usdToIdr } from '../../utils/usdToIdr';
+import useStore from '../../store/useStore';
+import { useProduct, useProducts } from '../../hooks/useProducts';
 
 import DetailLayout from '../../layouts/DetailLayout';
 import ProductCard from '../../components/product/Card';
-
-import useStore from '../../store/useStore';
-import { useProduct, useProducts } from '../../hooks/useProducts'; // Custom hook to fetch product data based on ID
 import Wishlist from '../../assets/icons/wishlist';
 
 
 const ProductDetail: React.FC = () => {
     const { addToWishlist, removeFromWishlist, isProductInWishlist } = useStore();
+    const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
     const { id } = useParams<{ id: string }>(); // Get product ID from URL parameters
     const { data: products } = useProducts();
@@ -41,7 +44,7 @@ const ProductDetail: React.FC = () => {
         <div>
             <DetailLayout data={product} addToWishlist={addToWishlist}>
 
-                <div className='grid grid-cols-3 gap-3 mb-12'>
+                <div className='grid lg:grid-cols-3 gap-3 mb-12'>
 
                     <div className='relative flex justify-center items-center aspect-square bg-slate-50 group-hover:bg-slate-200/20 rounded-lg  transition-all  ease-in-out duration-300'>
                         <img
@@ -55,9 +58,9 @@ const ProductDetail: React.FC = () => {
                             className='absolute top-2 right-2 cursor-pointer'
                             onClick={handleWishlistToggle}
                         >
-                            <Wishlist className={`${inWishlist ? 'fill-current' : ''} h-8 hover:fill-current text-rose-500 transition-all ease-in-out duration-300`} />
+                            <Wishlist className={`${inWishlist ? 'fill-current hover:scale-110 text-rose-600' : 'text-rose-400'} h-8 hover:fill-current transition-all ease-in-out duration-300`} />
                         </div>
-                        <div className="absolute flex gap-1 items-center w-full bottom-1  py-1 px-2">
+                        <div className="absolute flex gap-1 items-center w-full bottom-1 py-1 px-2">
                             {product.images?.map((img) => (
                                 <div
                                     key={img}
@@ -73,7 +76,36 @@ const ProductDetail: React.FC = () => {
                             ))}
                         </div>
                     </div>
-                    <div className="col-span-2">
+                    <div className="lg:col-span-2 mt-10 lg:mt-0">
+                        {isMobile && (
+                            <>
+                                <h1 className="font-semibold text-2xl">{product.title}</h1>
+                                <div className="flex flex-col">
+                                    {product.discountPercentage >= 1 && (
+                                        <p className="text-red-500 text-2xl font-bold">
+                                            {usdToIdr(Number(product.price - (product.price * product.discountPercentage / 100)))}
+                                        </p>
+                                    )}
+                                    <div className="flex items-center gap-2 mb-4">
+                                        {product.discountPercentage >= 1 && (
+                                            <div className="flex justify-center items-center bg-[#FF204E] py-0.5 pl-2 pr-3 rounded-l-md rounded-r-xl">
+                                                <strong className="text-white text-xs">
+                                                    {Math.round(product.discountPercentage)}%
+                                                </strong>
+                                            </div>
+                                        )}
+                                        <p
+                                            className={`
+                                    ${product.discountPercentage >= 1 ? 'font-light text-sm text-gray-400 line-through' : 'text-slate-700 text-2xl font-bold'}
+                                `}
+                                        >
+                                            {usdToIdr(Number(product.price))}
+                                        </p>
+                                    </div>
+                                </div>
+                            </>
+
+                        )}
                         <h3 className='font-medium'>Deskripsi Produk</h3>
                         <p className="mt-2 font-light text-gray-600">{product.description}</p>
                         <div className="divide-y divide-slate-200 border-b border-b-slate-200 mt-5">
@@ -88,7 +120,7 @@ const ProductDetail: React.FC = () => {
                 </div>
                 <div className="">
                     <h3 className='font-medium'>Produk Serupa</h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mt-6">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mt-6">
 
                         {products
                             ?.filter((p) => p.id !== product.id)
