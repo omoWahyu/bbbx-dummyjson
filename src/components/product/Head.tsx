@@ -9,7 +9,7 @@ interface ProductProps {
 const ProductHead: React.FC<ProductProps> = ({ data }) => {
     return (
         <div className="sticky top-16 z-10 w-full bg-white border-b">
-            <div className="max-w-screen-xl mx-auto flex justify-between items-end py-4">
+            <div className="max-w-screen-xl mx-auto flex justify-between items-end p-4">
                 <div className="">
                     <h1 className="font-semibold text-3xl">{data.title}</h1>
                     <div className="flex flex-col">
