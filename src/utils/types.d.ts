@@ -1,4 +1,3 @@
-// src/types/product.d.ts
 export interface iProduct {
 	id: number;
 	title: string;
@@ -8,7 +7,7 @@ export interface iProduct {
 	category: string;
 	rating: number;
 	stock: number;
-	images: string[]; // Array of image URLs
+	images: string[];
 	sku: string;
 	brand: string;
 }

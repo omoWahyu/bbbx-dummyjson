@@ -1,15 +1,15 @@
 // src/components/ProductDetail.tsx
 import React, { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 
 import { usdToIdr } from '../../utils/usdToIdr';
 import useStore from '../../store/useStore';
-import { useProduct, useProducts } from '../../hooks/useProducts';
+import { useProduct } from '../../hooks/useProducts';
 
 import DetailLayout from '../../layouts/DetailLayout';
-import ProductCard from '../../components/product/Card';
 import Wishlist from '../../assets/icons/wishlist';
+import SimilarProduct from '../../components/product/SimilarProduct';
 
 
 const ProductDetail: React.FC = () => {
@@ -17,7 +17,6 @@ const ProductDetail: React.FC = () => {
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
     const { id } = useParams<{ id: string }>(); // Get product ID from URL parameters
-    const { data: products } = useProducts();
     const { data: product } = useProduct(id!); // Fetch product data using custom hook
 
     const [mainImage, setMainImage] = useState('');
@@ -116,28 +115,10 @@ const ProductDetail: React.FC = () => {
                             <p className='flex items-center py-2 font-light'><span className='block w-32 text-slate-400'>SKU:</span>{product.sku}</p>
                         </div>
                     </div>
-
                 </div>
-                <div className="">
-                    <h3 className='font-medium'>Produk Serupa</h3>
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mt-6">
-
-                        {products
-                            ?.filter((p) => p.id !== product.id)
-                            .sort(() => 0.5 - Math.random())
-                            .slice(0, 5)
-                            .map((product) => (
-                                <ProductCard product={product} key={product.id} />
-                            ))}
-                        <Link
-                            to="/"
-                            className="group text-center flex justify-center items-center bg-slate-50/30 hover:bg-sky-300/10 rounded-md  transition-all ease-in-out duration-300">
-                            <span className='group-hover:font-medium group-hover:scale-110 transition-all ease-in-out text-slate-500 group-hover:text-sky-500'>lihat semua</span>
-                        </Link>
-                    </div>
-                </div>
-            </DetailLayout>
-        </div>
+                <SimilarProduct />
+            </DetailLayout >
+        </div >
     );
 };
 
