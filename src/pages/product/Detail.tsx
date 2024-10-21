@@ -18,11 +18,11 @@ const ProductDetail: React.FC = () => {
 
     const { id } = useParams<{ id: string }>(); // Get product ID from URL parameters
     const { data: products } = useProducts();
-    const { data: product, isLoading } = useProduct(id!); // Fetch product data using custom hook
+    const { data: product } = useProduct(id!); // Fetch product data using custom hook
 
     const [mainImage, setMainImage] = useState('');
 
-    if (isLoading || !product) {
+    if (!product) {
         return <div></div>;
     }
 
@@ -142,5 +142,4 @@ const ProductDetail: React.FC = () => {
 };
 
 export default ProductDetail;
-
 
